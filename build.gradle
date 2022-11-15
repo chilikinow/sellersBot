@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+}
+
+group 'com.chilikinow'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation (
+            'org.telegram:telegrambots:5.2.0'
+            ,'org.apache.poi:poi-examples:5.0.0'
+            ,'org.jsoup:jsoup:1.13.1'
+            ,'com.googlecode.json-simple:json-simple:1.1.1'
+            ,'com.jayway.jsonpath:json-path:2.6.0'
+            ,'org.apache.httpcomponents:httpclient:4.5.13'
+            ,'org.slf4j:slf4j-simple:1.7.25'
+    )
+
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    testImplementation ('org.slf4j:slf4j-simple:1.7.25')
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+test {
+    useJUnitPlatform()
+}
+
+sourceSets {
+    main.java.srcDir 'src/main/java'
+    main.resources.srcDir 'src/main/resources'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.chilikinov.sellers.Core' //'<your packagename>.<the name of your Main class>'
+        )
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+//    into 'generator', {
+//        from 'generator'
+//    }
+}

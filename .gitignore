@@ -1,0 +1,7 @@
+/.gradle/
+/.idea/
+/outResources/
+/outResourcesOEM/
+/gradlew
+/gradlew.bat
+/settings.gradle
