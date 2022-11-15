@@ -1,11 +1,11 @@
 package com.chilikinow.sellers.bot.processing;
 
-import com.chilikinov.sellers.bot.settings.BotData;
-import com.chilikinov.sellers.bot.info.Bonus;
-import com.chilikinov.sellers.bot.info.Device;
-import com.chilikinov.sellers.bot.info.Promo;
-import com.chilikinov.sellers.bot.Response;
-import com.chilikinov.sellers.bot.authorization.AuthorizationWithUsername;
+import com.chilikinow.sellers.bot.settings.BotData;
+import com.chilikinow.sellers.bot.info.Bonus;
+import com.chilikinow.sellers.bot.info.Device;
+import com.chilikinow.sellers.bot.info.Promo;
+import com.chilikinow.sellers.bot.Response;
+import com.chilikinow.sellers.bot.authorization.AuthorizationWithUsername;
 import org.apache.commons.io.FilenameUtils;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;

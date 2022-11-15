@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import com.chilikinov.sellers.bot.settings.BotData;
+import com.chilikinow.sellers.bot.settings.BotData;
 import org.apache.commons.io.FilenameUtils;
 
 public class Device {

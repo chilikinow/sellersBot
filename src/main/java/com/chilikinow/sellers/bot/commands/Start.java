@@ -1,7 +1,6 @@
 package com.chilikinow.sellers.bot.commands;
 
-import com.chilikinov.sellers.bot.settings.BotData;
-
+import com.chilikinow.sellers.bot.settings.BotData;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

@@ -1,7 +1,6 @@
 package com.chilikinow.sellers.bot.commands;
 
-import com.chilikinov.sellers.bot.info.Device;
-
+import com.chilikinow.sellers.bot.info.Device;
 import java.nio.file.Path;
 import java.util.List;
 

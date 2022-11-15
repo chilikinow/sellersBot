@@ -1,6 +1,6 @@
 package com.chilikinow.sellers.bot.info;
 
-import com.chilikinov.sellers.bot.settings.BotData;
+import com.chilikinow.sellers.bot.settings.BotData;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;

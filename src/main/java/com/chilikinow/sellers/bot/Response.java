@@ -1,6 +1,6 @@
 package com.chilikinow.sellers.bot;
 
-import com.chilikinov.sellers.bot.menu.MenuKeyboardInline;
+import com.chilikinow.sellers.bot.menu.MenuKeyboardInline;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;

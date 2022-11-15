@@ -48,7 +48,7 @@ jar {
     manifest {
         attributes(
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'com.chilikinov.sellers.Core' //'<your packagename>.<the name of your Main class>'
+                'Main-Class': 'com.chilikinow.sellers.Core' //'<your packagename>.<the name of your Main class>'
         )
     }
 

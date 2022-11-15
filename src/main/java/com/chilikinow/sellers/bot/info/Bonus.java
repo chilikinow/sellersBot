@@ -1,6 +1,6 @@
 package com.chilikinow.sellers.bot.info;
 
-import com.chilikinov.sellers.bot.settings.BotData;
+import com.chilikinow.sellers.bot.settings.BotData;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.methods.HttpGet;
