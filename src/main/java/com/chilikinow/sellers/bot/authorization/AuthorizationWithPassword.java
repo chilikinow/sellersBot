@@ -1,8 +1,8 @@
 package com.chilikinow.sellers.bot.authorization;
 
-import com.chilikinow.sellers.bot.settings.BotData;
-import com.chilikinow.sellers.bot.Response;
 import com.chilikinow.sellers.bot.commands.Start;
+import com.chilikinow.sellers.bot.processing.Response;
+import com.chilikinow.sellers.bot.settings.BotData;
 
 public class AuthorizationWithPassword {
 

@@ -1,4 +1,4 @@
-package com.chilikinow.sellers.bot;
+package com.chilikinow.sellers.bot.processing;
 
 import com.chilikinow.sellers.bot.menu.MenuKeyboardInline;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;

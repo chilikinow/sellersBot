@@ -29,10 +29,17 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
-tasks.withType(JavaCompile) {
+//tasks.withType(JavaCompile) {
+//    options.encoding = 'UTF-8'
+//    sourceCompatibility = JavaVersion.VERSION_1_8
+//    targetCompatibility = JavaVersion.VERSION_1_8
+//}
+
+compileJava{
     options.encoding = 'UTF-8'
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+}
+compileTestJava{
+    options.encoding = 'UTF-8'
 }
 
 test {
@@ -45,18 +52,24 @@ sourceSets {
 }
 
 jar {
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
     manifest {
         attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+//                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
                 'Main-Class': 'com.chilikinow.sellers.Core' //'<your packagename>.<the name of your Main class>'
         )
     }
-
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
-
-//    into 'generator', {
+    //    into 'generator', {
 //        from 'generator'
 //    }
 }
+
+
+
+
+

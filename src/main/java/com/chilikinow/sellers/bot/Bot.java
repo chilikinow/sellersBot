@@ -1,6 +1,7 @@
 package com.chilikinow.sellers.bot;
 
 import com.chilikinow.sellers.bot.processing.ProcessingUserMessage;
+import com.chilikinow.sellers.bot.processing.Response;
 import com.chilikinow.sellers.bot.settings.BotData;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;

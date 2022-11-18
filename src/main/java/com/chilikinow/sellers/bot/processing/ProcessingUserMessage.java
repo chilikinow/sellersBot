@@ -1,11 +1,10 @@
 package com.chilikinow.sellers.bot.processing;
 
-import com.chilikinow.sellers.bot.settings.BotData;
-import com.chilikinow.sellers.bot.info.Promo;
-import com.chilikinow.sellers.bot.Response;
 import com.chilikinow.sellers.bot.commands.Info;
 import com.chilikinow.sellers.bot.commands.Service;
 import com.chilikinow.sellers.bot.commands.Start;
+import com.chilikinow.sellers.bot.info.Promo;
+import com.chilikinow.sellers.bot.settings.BotData;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
