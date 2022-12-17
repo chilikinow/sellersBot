@@ -1,6 +1,7 @@
 package com.chilikinow.sellers.bot.info;
 
 import com.chilikinow.sellers.bot.settings.BotData;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -11,10 +12,11 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.List;
 
+@Slf4j
 public class Promo {
 
     private static Map <String, String> promoMobileTVMap;
-    private static Map <String, String> promoAppliancesMap;
+//    private static Map <String, String> promoAppliancesMap;
     private static XSSFWorkbook workBook;
 
     private Promo(){
@@ -23,7 +25,7 @@ public class Promo {
     public static void updateWorkbook(){
         addWorkbook();
         promoMobileTVMap = new HashMap<>(addSpecialMap(workBook,"Календарь"));
-        promoAppliancesMap = new HashMap<>(addSpecialMap(workBook,"Акции_БТ"));
+//        promoAppliancesMap = new HashMap<>(addSpecialMap(workBook,"Акции_БТ"));
     }
 
     public static Map<String, String> getInstancePromoMobileTV(){
@@ -31,21 +33,21 @@ public class Promo {
         return promoMobileTVMap;
     }
 
-    public static Map<String, String> getInstancePromoAppliances(){
-        updateWorkbook();
-        return promoAppliancesMap;
-    }
+//    public static Map<String, String> getInstancePromoAppliances(){
+//        updateWorkbook();
+//        return promoAppliancesMap;
+//    }
 
     private static void addWorkbook(){
 
         promoMobileTVMap = new HashMap<>();
-        promoAppliancesMap = new HashMap<>();
+//        promoAppliancesMap = new HashMap<>();
 
-        Path PromoFilePath = BotData.outResources.resolve("Samsung_Календарь акций.xlsx");
+        Path promoFilePath = BotData.outResources.resolve(BotData.promoFileName);
 
         workBook = null;
-        try (FileInputStream fIS = new FileInputStream(PromoFilePath.toFile())) {
-            workBook = new XSSFWorkbook(fIS);//получили книгу exel
+        try (FileInputStream fIS = new FileInputStream(promoFilePath.toFile())) {
+            workBook = new XSSFWorkbook(fIS);//получили книгу excel
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден.");
         } catch (IOException e) {
@@ -86,8 +88,12 @@ public class Promo {
             Cell bufferCell;
             while (cellIterator.hasNext()){  //формируем лист ячеек из строки
                 bufferCell = cellIterator.next();
-                if(!bufferCell.getStringCellValue().equals("")) {  //за исключением пустых
-                    cellList.add(bufferCell);
+                try {
+                    if(!bufferCell.getStringCellValue().equals("")) {  //за исключением пустых
+                        cellList.add(bufferCell);
+                    }
+                } catch (Exception exception){
+
                 }
             }
 
@@ -114,50 +120,6 @@ public class Promo {
 //            System.out.println("_________End Map_________\n\n\n");
 
         return map;
-    }
-
-    public static Map<String, String> getDiscountsOnThePriceDropPromoMap(){
-        Map<String, String> onePromoMap = new TreeMap<>();
-        onePromoMap = addDiscountsOnThePriceDropPromoMap(workBook, 5);
-        return onePromoMap;
-    }
-
-    private static Map<String, String> addDiscountsOnThePriceDropPromoMap(XSSFWorkbook workBook, int sheetNumber){
-        List<List<String>> tableStrings = new ArrayList<>();
-        List<String> lineHeadingList = new ArrayList<>();
-        tableStrings = addTableStringsFromPromoFile(workBook, sheetNumber);
-        int lineHeading = 0;
-        int columnKey = 0;
-        List<Integer> needColumns = new ArrayList<>();
-        needColumns.add(1);
-        needColumns.add(2);
-
-        lineHeadingList = tableStrings.get(lineHeading);
-        tableStrings.remove(lineHeading);
-
-        Map<String, String> finalMap = new TreeMap<>();
-        StringBuilder key = new StringBuilder();
-        StringBuilder value = new StringBuilder();
-        for (int i = 0; i < tableStrings.size(); i++) {
-            for (int j = 0; j < tableStrings.get(i).size(); j++) {
-                needColumns.add(tableStrings.get(i).size() - 1);
-                if (j == columnKey) {
-                    key.append(tableStrings.get(i).get(j));
-                    continue;
-                }
-                if (needColumns.contains(j))
-                    value.append(tableStrings.get(i).get(j) + "\n");
-            }
-
-            //test
-//            System.out.println("key : " + key + "\n\nvalue= "+ value);
-
-            finalMap.put(key.toString(), value.toString());
-            key = new StringBuilder();
-            value = new StringBuilder();
-        }
-
-        return finalMap;
     }
 
     private static List<List<String>> addTableStringsFromPromoFile(XSSFWorkbook workBook, int sheetNumber){

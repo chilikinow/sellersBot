@@ -1,46 +1,41 @@
 package com.chilikinow.sellers.bot.settings;
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 @Slf4j
 public class BotData {
 
-    public final static Path outResources;
-    public final static String botName;
-    public final static String botToken;
-    public final static String botId;
-    public final static String botPassword;
-    public final static String bonusBaseURI;
-    public final static String bonusUserName;
-    public final static String bonusPassword;
+    public static Path outResources;
+    public static String botName;
+    public static String botToken;
+    public static String botId;
+    public static String botPassword;
+    public static String promoFileName;
+    public static String bonusBaseURI;
+    public static String bonusUserName;
+    public static String bonusPassword;
     public static String readPromoInfoFileUrl;
     public static String downloadPromoInfoFileUrl;
 
-    static {
+    @SneakyThrows
+    public static void init(Path mainResources){
 
-        // todo
-//        URI outResourcesURI = null;
-//        try {
-//            outResourcesURI = BotData.class.getResource( BotData.class.getSimpleName() + ".class" ).toURI();
-//        } catch (URISyntaxException uriSyntaxException) {
-//            log.info(uriSyntaxException.getMessage());
-//        }
-//        log.info("outResourcesURI {}", outResourcesURI);
+        if (mainResources == null){
+            log.error("Рессурсы для запуска бота не найдены");
+        }
 
-
-        outResources = Paths.get("outResources");
-
+        outResources = mainResources;
         Path botSettingsPath = outResources.resolve("botSettings.properties");
         Properties botSettingsProperties = new Properties();
         try {
             botSettingsProperties.load(new FileReader(botSettingsPath.toFile()));
         } catch (IOException ioException) {
-            log.info(ioException.getMessage());
+            ioException.printStackTrace();
         }
 
         botName = botSettingsProperties.getProperty("userNameBotAuthorization");
@@ -48,7 +43,8 @@ public class BotData {
         botId = botSettingsProperties.getProperty("idBotAuthorization");
 
         botPassword = "12345";
-        
+
+        promoFileName = new String(botSettingsProperties.getProperty("promoFileName").getBytes("windows-1251"), "UTF-8");
         bonusBaseURI = botSettingsProperties.getProperty("uriBonusCardSystem");
         bonusUserName = botSettingsProperties.getProperty("userNameBonusCardSystem");
         bonusPassword = botSettingsProperties.getProperty("passwordBonusCardSystem");

@@ -28,7 +28,8 @@ public class MenuKeyboardReply implements MenuKeyboard{
 
     @Override
     public ReplyKeyboard getAppliancesMenu(){
-        List<String> keyList = new ArrayList<>(Promo.getInstancePromoAppliances().keySet());
+        List<String> keyList = new ArrayList<>(Promo.getInstancePromoMobileTV().keySet());
+//        List<String> keyList = new ArrayList<>(Promo.getInstancePromoAppliances().keySet());
         return createPromoMenu(keyList);
     }
 

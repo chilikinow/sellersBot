@@ -11,25 +11,28 @@ public class MenuKeyboardInline implements MenuKeyboard{
 
     @Override
     public ReplyKeyboard getStartMenu() {
-        return createStartMenu();
+        return createPromoMenu(StartMenu.menuList, false);
+//        return createStartMenu();
     }
 
     @Override
     public ReplyKeyboard getInfoMenu() {
-        return createInfoMenu();
+        return createPromoMenu(InfoMenu.menuList, true);
+//        return createInfoMenu();
     }
 
     @Override
     public ReplyKeyboard getMobileTVPromoMenu() {
 
         List<String> keyList = new ArrayList<>(Promo.getInstancePromoMobileTV().keySet());
-        return createPromoMenu(keyList);
+        return createPromoMenu(keyList, true);
     }
 
     @Override
     public ReplyKeyboard getAppliancesMenu() {
-        List<String> keyList = new ArrayList<>(Promo.getInstancePromoAppliances().keySet());
-        return createPromoMenu(keyList);
+        List<String> keyList = new ArrayList<>(Promo.getInstancePromoMobileTV().keySet());
+//        List<String> keyList = new ArrayList<>(Promo.getInstancePromoAppliances().keySet());
+        return createPromoMenu(keyList, true);
     }
 
 
@@ -116,78 +119,78 @@ public class MenuKeyboardInline implements MenuKeyboard{
         return inlineKeyboardMarkup;
     }
 
-    private InlineKeyboardMarkup createStartMenu(){
+//    private InlineKeyboardMarkup createStartMenu(){
+//
+//        List<String> buttonList = new ArrayList<>(StartMenu.menuList);
+//
+//        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+//        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+//
+//        InlineKeyboardButton button1 = new InlineKeyboardButton();
+//        button1.setText(buttonList.get(0));
+//        button1.setCallbackData(buttonList.get(0));
+//        InlineKeyboardButton button2 = new InlineKeyboardButton();
+//        button2.setText(buttonList.get(1));
+//        button2.setCallbackData(buttonList.get(1));
+//        List<InlineKeyboardButton> keyboardRow = new ArrayList<>();
+//        keyboardRow.add(button1);
+//        keyboardRow.add(button2);
+//        rowList.add(keyboardRow);
+//
+//        for (int i = 2; i < buttonList.size(); i++){
+//            button1 = new InlineKeyboardButton();
+//            button1.setText(buttonList.get(i));
+//            button1.setCallbackData(buttonList.get(i));
+//            keyboardRow = new ArrayList<>();
+//            keyboardRow.add(button1);
+//            rowList.add(keyboardRow);
+//        }
+//        inlineKeyboardMarkup.setKeyboard(rowList);
+//
+//        return inlineKeyboardMarkup;
+//    }
 
-        List<String> buttonList = new ArrayList<>(StartMenu.menuList);
+//    private InlineKeyboardMarkup createInfoMenu(){
+//        List<String> buttonList = new ArrayList<>(InfoMenu.menuList);
+//
+//        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+//        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+//
+//        InlineKeyboardButton button1 = new InlineKeyboardButton();
+//        button1.setText(buttonList.get(0));
+//        button1.setCallbackData(buttonList.get(0));
+//        InlineKeyboardButton button2 = new InlineKeyboardButton();
+//        button2.setText(buttonList.get(1));
+//        button2.setCallbackData(buttonList.get(1));
+//        List<InlineKeyboardButton> keyboardRow = new ArrayList<>();
+//        keyboardRow.add(button1);
+//        keyboardRow.add(button2);
+//        rowList.add(keyboardRow);
+//
+//        button1 = new InlineKeyboardButton();
+//        button1.setText(buttonList.get(2));
+//        button1.setCallbackData(buttonList.get(2));
+//        button2 = new InlineKeyboardButton();
+//        button2.setText(buttonList.get(3));
+//        button2.setCallbackData(buttonList.get(3));
+//        keyboardRow = new ArrayList<>();
+//        keyboardRow.add(button1);
+//        keyboardRow.add(button2);
+//        rowList.add(keyboardRow);
+//
+//        button1 = new InlineKeyboardButton();
+//        button1.setText(buttonList.get(4));
+//        button1.setCallbackData(buttonList.get(4));
+//        keyboardRow = new ArrayList<>();
+//        keyboardRow.add(button1);
+//        rowList.add(keyboardRow);
+//
+//        inlineKeyboardMarkup.setKeyboard(rowList);
+//
+//        return inlineKeyboardMarkup;
+//    }
 
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-
-        InlineKeyboardButton button1 = new InlineKeyboardButton();
-        button1.setText(buttonList.get(0));
-        button1.setCallbackData(buttonList.get(0));
-        InlineKeyboardButton button2 = new InlineKeyboardButton();
-        button2.setText(buttonList.get(1));
-        button2.setCallbackData(buttonList.get(1));
-        List<InlineKeyboardButton> keyboardRow = new ArrayList<>();
-        keyboardRow.add(button1);
-        keyboardRow.add(button2);
-        rowList.add(keyboardRow);
-
-        for (int i = 2; i < buttonList.size(); i++){
-            button1 = new InlineKeyboardButton();
-            button1.setText(buttonList.get(i));
-            button1.setCallbackData(buttonList.get(i));
-            keyboardRow = new ArrayList<>();
-            keyboardRow.add(button1);
-            rowList.add(keyboardRow);
-        }
-        inlineKeyboardMarkup.setKeyboard(rowList);
-
-        return inlineKeyboardMarkup;
-    }
-
-    private InlineKeyboardMarkup createInfoMenu(){
-        List<String> buttonList = new ArrayList<>(InfoMenu.menuList);
-
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-
-        InlineKeyboardButton button1 = new InlineKeyboardButton();
-        button1.setText(buttonList.get(0));
-        button1.setCallbackData(buttonList.get(0));
-        InlineKeyboardButton button2 = new InlineKeyboardButton();
-        button2.setText(buttonList.get(1));
-        button2.setCallbackData(buttonList.get(1));
-        List<InlineKeyboardButton> keyboardRow = new ArrayList<>();
-        keyboardRow.add(button1);
-        keyboardRow.add(button2);
-        rowList.add(keyboardRow);
-
-        button1 = new InlineKeyboardButton();
-        button1.setText(buttonList.get(2));
-        button1.setCallbackData(buttonList.get(2));
-        button2 = new InlineKeyboardButton();
-        button2.setText(buttonList.get(3));
-        button2.setCallbackData(buttonList.get(3));
-        keyboardRow = new ArrayList<>();
-        keyboardRow.add(button1);
-        keyboardRow.add(button2);
-        rowList.add(keyboardRow);
-
-        button1 = new InlineKeyboardButton();
-        button1.setText(buttonList.get(4));
-        button1.setCallbackData(buttonList.get(4));
-        keyboardRow = new ArrayList<>();
-        keyboardRow.add(button1);
-        rowList.add(keyboardRow);
-
-        inlineKeyboardMarkup.setKeyboard(rowList);
-
-        return inlineKeyboardMarkup;
-    }
-
-    private InlineKeyboardMarkup createPromoMenu(List keyList){
+    private InlineKeyboardMarkup createPromoMenu(List keyList, boolean addMainMenuButton){
 
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
@@ -211,12 +214,16 @@ public class MenuKeyboardInline implements MenuKeyboard{
             rowList.add(keyboardRow);
         }
 
-        button = new InlineKeyboardButton();
-        button.setText("Главное меню");
-        button.setCallbackData("Главное меню");
-        keyboardRow = new ArrayList<>();
-        keyboardRow.add(button);
-        rowList.add(keyboardRow);
+        if (addMainMenuButton == true) {
+
+            button = new InlineKeyboardButton();
+            button.setText("Главное меню");
+            button.setCallbackData("Главное меню");
+            keyboardRow = new ArrayList<>();
+            keyboardRow.add(button);
+            rowList.add(keyboardRow);
+
+        }
 
         inlineKeyboardMarkup.setKeyboard(rowList);
 

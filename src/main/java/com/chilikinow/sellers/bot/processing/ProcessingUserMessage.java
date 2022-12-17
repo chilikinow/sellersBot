@@ -7,7 +7,6 @@ import com.chilikinow.sellers.bot.info.Promo;
 import com.chilikinow.sellers.bot.settings.BotData;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -49,14 +48,14 @@ public class ProcessingUserMessage {
                                 Response.TypeKeyboard.PROMO_MOBILE_TV);
                 return replyMessage;
 
-            case "Акции БТ":
-            case "/promo_appliances":
-
-                replyMessage = Response.createTextMessageWithKeyboard
-                        (chatId, "Список акций интернет магазина:\n" +
-                                        "https://galaxystore.ru/promo/",
-                                Response.TypeKeyboard.PROMO_APPLIANCES);
-                return replyMessage;
+//            case "Акции БТ":
+//            case "/promo_appliances":
+//
+//                replyMessage = Response.createTextMessageWithKeyboard
+//                        (chatId, "Список акций интернет магазина:\n" +
+//                                        "https://galaxystore.ru/promo/",
+//                                Response.TypeKeyboard.PROMO_APPLIANCES);
+//                return replyMessage;
 
             case "Характеристики устройств": // Поиск подробной информации об устройстве
             case "/devices":

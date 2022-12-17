@@ -1,10 +1,8 @@
 package com.chilikinow.sellers.bot.processing;
 
-import com.chilikinow.sellers.bot.info.Bonus;
 import com.chilikinow.sellers.bot.info.Device;
 import com.chilikinow.sellers.bot.info.Promo;
 import com.chilikinow.sellers.bot.settings.BotData;
-import com.chilikinow.sellers.bot.authorization.AuthorizationWithUsername;
 import org.apache.commons.io.FilenameUtils;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -93,39 +91,49 @@ public class DetailedProcessingUserMessage {
 
         //Если ввели номер телефона
         if (bonusMessageText.startsWith("9") && bonusMessageText.length() == 10) {
-            if (!AuthorizationWithUsername.pass(userName)){
-                System.out.println("not pass to bonus system");
-                return notPassReplyMessage;
-            }
-            String findBonusInfo = new Bonus().getInfoPhoneNumber(bonusMessageText);
-            if (!findBonusInfo.isEmpty()){
-                replyMessage = Response.createTextMessageWithKeyboard(chatId
-                        , findBonusInfo + "\n\n" + startButtonInfo
-                        , Response.TypeKeyboard.START);
-            } else {
-                replyMessage = Response.createTextMessageWithKeyboard(chatId
-                        , "Номера телефона нет в базе данных." + "\n\n" + startButtonInfo
-                        , Response.TypeKeyboard.START);
-            }
+
+            replyMessage = Response.createTextMessageWithKeyboard(chatId
+                    , "В данный момент система лояльности отключена." + "\n\n" + startButtonInfo
+                    , Response.TypeKeyboard.START);
+
+//            if (!AuthorizationWithUsername.pass(userName)){
+//                System.out.println("not pass to bonus system");
+//                return notPassReplyMessage;
+//            }
+//            String findBonusInfo = new Bonus().getInfoPhoneNumber(bonusMessageText);
+//            if (!findBonusInfo.isEmpty()){
+//                replyMessage = Response.createTextMessageWithKeyboard(chatId
+//                        , findBonusInfo + "\n\n" + startButtonInfo
+//                        , Response.TypeKeyboard.START);
+//            } else {
+//                replyMessage = Response.createTextMessageWithKeyboard(chatId
+//                        , "Номера телефона нет в базе данных." + "\n\n" + startButtonInfo
+//                        , Response.TypeKeyboard.START);
+//            }
             return replyMessage;
         }
         //Если ввели номер карты
         if ((bonusMessageText.startsWith("20") || bonusMessageText.startsWith("10"))
                 && (bonusMessageText.length() == 10) || (bonusMessageText.length() == 11)){
-            if (!AuthorizationWithUsername.pass(userName)){
-                System.out.println("not pass to bonus system");
-                return notPassReplyMessage;
-            }
-            String findBonusInfo = new Bonus().getInfoCardNumber(bonusMessageText);
-            if (!findBonusInfo.isEmpty()) {
-                replyMessage = Response.createTextMessageWithKeyboard(chatId
-                        , findBonusInfo + "\n\n" + startButtonInfo
-                        , Response.TypeKeyboard.START);
-            } else {
-                replyMessage = Response.createTextMessageWithKeyboard(chatId
-                        , "Карты лояльности нет в базе данных." + "\n\n" + startButtonInfo
-                        , Response.TypeKeyboard.START);
-            }
+
+            replyMessage = Response.createTextMessageWithKeyboard(chatId
+                    , "В данный момент система лояльности отключена." + "\n\n" + startButtonInfo
+                    , Response.TypeKeyboard.START);
+
+//            if (!AuthorizationWithUsername.pass(userName)){
+//                System.out.println("not pass to bonus system");
+//                return notPassReplyMessage;
+//            }
+//            String findBonusInfo = new Bonus().getInfoCardNumber(bonusMessageText);
+//            if (!findBonusInfo.isEmpty()) {
+//                replyMessage = Response.createTextMessageWithKeyboard(chatId
+//                        , findBonusInfo + "\n\n" + startButtonInfo
+//                        , Response.TypeKeyboard.START);
+//            } else {
+//                replyMessage = Response.createTextMessageWithKeyboard(chatId
+//                        , "Карты лояльности нет в базе данных." + "\n\n" + startButtonInfo
+//                        , Response.TypeKeyboard.START);
+//            }
             return replyMessage;
         }
 
@@ -165,37 +173,37 @@ public class DetailedProcessingUserMessage {
 
         //Поиск подробной информации по запрашиваемой акции
 
-        Map<String, String> promoAppliancesInfoMap = Promo.getInstancePromoAppliances();
-        List<String> promoAppliancesInfoKeyList = promoAppliancesInfoMap.keySet().stream().map(key -> {
-            if (key.length() > 30)
-                return key.substring(0, 30);
-            return key;
-        }).collect(Collectors.toList());
-        if (promoAppliancesInfoKeyList.contains(messageText)) {
-            for (Map.Entry<String, String> entry : promoAppliancesInfoMap.entrySet()) {
-                if (entry.getKey().startsWith(messageText)) {
-                    StringBuilder replyText = new StringBuilder();
-                    replyText.append(entry.getKey() + "\n\n" + entry.getValue());
-                    replyText.append("\n\nПодробности:\n\n");
-                    replyText.append(BotData.readPromoInfoFileUrl);
-                    if (replyText.length() > 3500){
-                        while (replyText.length() > 3500){
-                            replyMessageList.add(Response.createTextMessage(chatId, replyText.substring(0, 3500)));
-                            replyText = new StringBuilder(replyText.substring(3500));
-                        }
-                        replyMessageList.add(Response.createTextMessageWithKeyboard(chatId
-                                ,replyText.append("\n\n" + startButtonInfo).toString()
-                                ,Response.TypeKeyboard.START));
-                        return replyMessageList;
-                    }else{
-                        replyMessage = Response.createTextMessageWithKeyboard(chatId
-                                ,replyText.append("\n\n" + startButtonInfo).toString()
-                                ,Response.TypeKeyboard.START);
-                        return replyMessage;
-                    }
-                }
-            }
-        }
+//        Map<String, String> promoAppliancesInfoMap = Promo.getInstancePromoAppliances();
+//        List<String> promoAppliancesInfoKeyList = promoAppliancesInfoMap.keySet().stream().map(key -> {
+//            if (key.length() > 30)
+//                return key.substring(0, 30);
+//            return key;
+//        }).collect(Collectors.toList());
+//        if (promoAppliancesInfoKeyList.contains(messageText)) {
+//            for (Map.Entry<String, String> entry : promoAppliancesInfoMap.entrySet()) {
+//                if (entry.getKey().startsWith(messageText)) {
+//                    StringBuilder replyText = new StringBuilder();
+//                    replyText.append(entry.getKey() + "\n\n" + entry.getValue());
+//                    replyText.append("\n\nПодробности:\n\n");
+//                    replyText.append(BotData.readPromoInfoFileUrl);
+//                    if (replyText.length() > 3500){
+//                        while (replyText.length() > 3500){
+//                            replyMessageList.add(Response.createTextMessage(chatId, replyText.substring(0, 3500)));
+//                            replyText = new StringBuilder(replyText.substring(3500));
+//                        }
+//                        replyMessageList.add(Response.createTextMessageWithKeyboard(chatId
+//                                ,replyText.append("\n\n" + startButtonInfo).toString()
+//                                ,Response.TypeKeyboard.START));
+//                        return replyMessageList;
+//                    }else{
+//                        replyMessage = Response.createTextMessageWithKeyboard(chatId
+//                                ,replyText.append("\n\n" + startButtonInfo).toString()
+//                                ,Response.TypeKeyboard.START);
+//                        return replyMessage;
+//                    }
+//                }
+//            }
+//        }
         return null;
     }
 }
